@@ -8,36 +8,39 @@ This project was developed as part of a **Deep Learning** course in the 3rd year
 
 ## Features
 
-- Extracts frames from fight and non-fight videos
-- Uses ResNet152 for feature extraction
-- Trains an RNN model on extracted features
-- Performs real-time fight detection on live video feeds
+- Preprocessing of histopathological images (resizing, format validation)
+- Dataset split into training, validation, and testing sets
+- Image classification with a CNN model
+- Model training with TensorFlow and Keras
+- Performance evaluation and results visualization
+- Model saving and loading functionality
 
 ## Technologies Used
 
-- **Python**
-- **TensorFlow/Keras** (for deep learning models)
-- **ResNet152** (for feature extraction)
-- **Recurrent Neural Networks (RNNs)** (for fight classification)
-- **OpenCV** (for video processing)
-- **NumPy, Pandas** (for data handling)
+- **Python** (version 3.x)
+- **TensorFlow** (for deep learning model creation and training)
+- **Keras** (high-level neural networks API)
+- **OpenCV** (for image processing)
+- **Matplotlib** (for visualizing training results)
+- **NumPy** (for numerical computations)
+- **PIL** (for image format handling)
 
 ## File Structure
 
 ```
 project_root/
 │-- dataset/
-│   ├── videos/
-│   │   ├── fight/ (empty)
-│   │   ├── noFight/ (empty)
-│-- output/ (empty)
-│-- handled_features/
-│-- rnn_models/
-│-- handle_frames.py
-│-- handle_features.py
-│-- train.py
-│-- main.py
-│-- Kavga-Tespiti_Rapor.pdf (Project Report)
+│   ├── colon_aca/ (1000 images of cancerous tissue)
+│   ├── colon_n/ (1000 images of non-cancerous tissue)
+│-- forTEST/
+│   ├── colon_aca_test/ (10 test images of cancerous tissue)
+│   ├── colon_n_test/ (10 test images of non-cancerous tissue)
+│-- logs/
+│   ├── train/ (training logs)
+│   ├── validation/ (validation logs)
+│-- models/
+│   └── colon_model_v4.keras (saved model)
+│-- main.ipynb (Jupyter notebook containing the code)
 ```
 
 ## Installation & Setup
@@ -57,65 +60,14 @@ Make sure you have Python 3.8+ installed, then run:
 pip install -r requirements.txt
 ```
 
-### 3. Download Dataset & Pretrained Models
+### 3. Test With Your Own Dataset (Optional)
 
-To use the preprocessed dataset, extracted features, and trained model, download them from the following link: [Google Drive Link](https://drive.google.com/drive/folders/1Ga2j4wuFt9aGu25GQbExCNiFEJer0Csh)
+Alternatively, if you want to use your own dataset, Place your dataset (colon_aca, colon_n) in the dataset/ directory, ensuring the folder structure follows the one described above.
 
-After downloading, place the files in the appropriate directories:
-
-- Copy `fight/` and `noFight/` folders to `dataset/videos/`
-- Copy `handled_features/`, `output/`, and `rnn_models/` folders to the root project directory
-
-Alternatively, if you want to use your own dataset, you can follow the steps below.
-
-## Running the Project from Scratch
-
-### Step 1: Extract Frames from Videos
-
-Run the following command to extract frames from the dataset:
-
-```bash
-python handle_frames.py -d dataset/videos -o output
-```
-
-This script extracts frames from videos and saves them in the `output/` directory.
-
-### Step 2: Extract Features Using ResNet152
-
-```bash
-python handle_features.py
-```
-
-This script extracts features from the frames and saves them in `handled_features/`.
-
-### Step 3: Train the RNN Model
-
-Run the following command to train the model using extracted features:
-
-```bash
-python train.py -d handled_features -s rnn_models
-```
-
-This script trains an RNN model and saves it in the `rnn_models/` directory.
-
-### Step 4: Run Real-Time Detection
-
-To test the trained model on live video feed, run:
-
-```bash
-python main.py -m rnn_models
-```
-
-This will start the webcam and detect fights in real-time.
 
 ## Dataset Credit
 
-This dataset was obtained from [fight-detection-surv-dataset](https://github.com/seymanurakti/fight-detection-surv-dataset). Special thanks to the original creators.
-
-## Project Report
-
-For detailed explanations, methodology, and results, check the project report:\
-[Kavga-Tespiti\_Rapor.pdf](Kavga-Tespiti_Rapor.pdf)
+This dataset was obtained from [colon-cancer-detection-dataset](https://www.kaggle.com/datasets/andrewmvd/lung-and-colon-cancer-histopathological-images). Special thanks to the original creators.
 
 ## Contribution
 
